@@ -16,13 +16,13 @@ import javax.swing.JFrame;
 public class Sorting {
 
     /** Increment to sweep the sort. */
-    private static final int SORT_INCREMENT = 10000;
+    private static final int SORT_INCREMENT = 1000;
 
     /** Total number of values to try. */
     private static final int TOTAL_SORT_VALUES = 100;
 
     /** Total data size. */
-    private static final int TOTAL_INTEGER_VALUES = 1000000;
+    private static final int TOTAL_INTEGER_VALUES = 100000;
 
     /**
      * Bubble sort.
@@ -32,7 +32,14 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] bubbleSort(final int[] array) {
-        return null;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < array[i - 1]) {
+                int temp = array[i];
+                array[i] = array[i - 1];
+                array[i - 1] = temp;
+            }
+        }
+        return array;
     }
 
     /**
@@ -43,6 +50,11 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] selectionSort(final int[] array) {
+//        public void sort(int[] data, int lo, int hi) {
+//            if (lo < hi) {
+//                swap(data)
+//            }
+//        }
         return null;
     }
 
@@ -54,7 +66,25 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] mergeSort(final int[] array) {
-        return null;
+        if (array.length == 1) {
+            return array;
+        } else if (array.length == 2) {
+            //swap if unsorted
+            return array;
+        } else {
+            int[] array1 = new int[array.length / 2];
+            for (int i = 0; i < array1.length; i++) {
+                array1[i] = array[i];
+            }
+            int[] array2 = new int[array.length - array1.length];
+            for (int i = 0; i < array1.length; i++) {
+                array2[i] = array[i + array1.length];
+            }
+            int[] sortedArray1 = mergeSort(array1);
+            int[] sortedArray2 = mergeSort(array2);
+            int[] sortedArray = merge(sortedArray1, sortedArray2);
+            return  sortedArray;
+        }
     }
 
     /**
